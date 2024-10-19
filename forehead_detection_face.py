@@ -37,8 +37,8 @@ def detect_forehead(face_position: tuple) -> tuple[tuple[int, int], tuple[int, i
     
     return (forhead_position_x, forhead_position_y), face_position
 
-# cam = cv2.VideoCapture(0)
-cam = cv2.VideoCapture(streamurl)
+cam = cv2.VideoCapture(0)
+# cam = cv2.VideoCapture(streamurl)
 
 while True:
     _, frame = cam.read()

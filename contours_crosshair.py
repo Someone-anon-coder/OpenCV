@@ -21,6 +21,9 @@ cv2.moveWindow("Webcam", 0, 0)
 cv2.moveWindow("Composite", window_width, 0)
 cv2.moveWindow("Trackbar", window_width * 3, 0)
 
+# stream_url = "https://192.168.190.42:4343"
+
+# cam = cv2.VideoCapture(stream_url)
 cam = cv2.VideoCapture(0)
 while True:
     _, frame = cam.read()
@@ -63,6 +66,8 @@ while True:
             x, y, w, h = cv2.boundingRect(contour)
             print(f"X: {x}, Y: {y}, W: {w}, H: {h}")
             
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
             cv2.line(frame, (x + w // 2, 0), (x + w // 2, window_height), (255, 0, 0), 2)
             cv2.line(frame, (0, y + h // 2), (window_width, y + h // 2), (255, 0, 0), 2)
     
@@ -72,5 +77,5 @@ while True:
     if cv2.waitKey(1) == ord('q'):
         break
 
-# cam.release()
+cam.release()
 cv2.destroyAllWindows()
