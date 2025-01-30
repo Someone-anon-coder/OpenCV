@@ -1,3 +1,4 @@
+import random
 import cv2
 
 window_width = 640
@@ -8,6 +9,8 @@ current_x_pos = 0
 current_y_pos = 0
 current_end_x_pos = current_x_pos + rectangle_size
 current_end_y_pos = current_y_pos + rectangle_size
+
+COLOR = (0, 255, 0)
 
 previous_x_pos = 0
 previous_y_pos = 0
@@ -61,8 +64,10 @@ while True:
         
         elif (current_end_x_pos == window_width and previous_end_y_pos > current_end_y_pos) or (current_end_y_pos == window_height and previous_end_x_pos > current_end_x_pos):
             move_direction = move_directions[0]
+
+        COLOR = random.choices(range(256), k=3)
         
-    frame = cv2.rectangle(frame, (current_x_pos, current_y_pos), (current_end_x_pos, current_end_y_pos), (255, 0, 0), -1)
+    frame = cv2.rectangle(frame, (current_x_pos, current_y_pos), (current_end_x_pos, current_end_y_pos), COLOR, -1)
     cv2.imshow("Webcam", frame)
     
     if cv2.waitKey(1) == ord('q'):
